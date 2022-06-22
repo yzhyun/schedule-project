@@ -21,10 +21,5 @@ for i in range(n):
                 lSum[i]=lScore[i]
         else:
             lSum[i]=0
+print(sum(lSum))
 
-
-print(sum(lSum))    
-
-lsum=[0 for i in range (n)]
-    
-    
