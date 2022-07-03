@@ -1,2 +1,4 @@
 #파일읽기
 sys.stdin("input.txt", "rt")
+#리스트 특정 값 초기화
+lcards=[0 for i in range(20)]
