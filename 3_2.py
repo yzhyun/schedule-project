@@ -12,6 +12,7 @@ for i in range(0, len(sInput)):
 #        print(sInput[i])
         sRslt+=(sInput[i])
 
+
 nRslt=int(sRslt)
 print(nRslt)
 
@@ -21,6 +22,9 @@ for i in range(1,nRslt+1):
         nAns+=1
 
 print(nAns)
+
+
+
 
 
 

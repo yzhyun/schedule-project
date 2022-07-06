@@ -10,4 +10,7 @@ for i in range (t):
     a.sort()
 
     print("##%d %d" %(i+1, a[k-1]))
+
+res="1"
+print(res.isdigit())
     
