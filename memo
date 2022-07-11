@@ -12,3 +12,6 @@ a, b=b, a
 #옆으로 출력
 for i in l3:
     print(i, end=' ')
+#2차원 배열 초기화
+arr=[[0]*n for _ in range(n)]
+a=[list(map(int, input().split())) for _ in range(n)]

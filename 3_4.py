@@ -1,4 +1,3 @@
-'''
 import sys
 sys.stdin=open("input.txt", "rt")
 
@@ -23,8 +22,9 @@ l3.sort()
 
 for i in l3:
     print(i, end=' ')
-'''
 
+
+'''
 import sys
 sys.stdin=open("input.txt", "rt")
 
@@ -41,17 +41,28 @@ print("========================")
 
 l3=[]
 p1=p2=0
-
+i=0
 while(p1<n1 and p2<n2):
 
     if(l1[i]<=l2[i]):
         l3.append(l1[i])
         l3.append(l2[i])
         p1+=1
-    else:
+    elif(l2[i]<=l1[i]):
         l3.append(l2[i])
         l3.append(l1[i])
         p2+=1
 
-print(l3)
+    i+=1
 
+    if((n1)==p1):
+        for i in range(n1, n2):
+            l3.append(l2[i])
+    if((n2)==p2):
+        for i in range(n2, n1):
+            l3.append(l1[i])
+
+for i in l3:
+    print(i, end=" ")
+
+'''
