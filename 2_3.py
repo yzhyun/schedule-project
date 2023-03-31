@@ -17,6 +17,8 @@ res.sort(reverse=True)
 print(res[k])
 
 '''
+[54, 53, 52, 46, 40, 28, 28, 23, 22, 18]
+
 a.sort(reverse=True)
 print(n,k)
 print(a)

@@ -1,0 +1,10 @@
+api_dic={
+    'pm001':"abcde"
+    ,'pm002':"efghi"
+}
+
+for i in api_dic.keys() :
+    print(i)
+
+aaa = 'pm001'
+print(api_dic[aaa])
