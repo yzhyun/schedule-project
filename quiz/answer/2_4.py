@@ -1,7 +1,7 @@
 import sys,os
 
-#print(os.getcwd());
-sys.stdin = open("./../input.txt", "rt")
+print(os.getcwd())
+sys.stdin = open("input.txt", "rt")
 
 n=int(input())
 la=list(map(int, input().split()))
@@ -9,21 +9,26 @@ avg=round(sum(la)/n)
 print(n)
 print(la)
 print(avg)
-minVal=la[0]
-idx=0
-res=0
+
+diff=0
+tmp=1000
+resVal=-1000
+resIdx=-1
+for idx, val in enumerate(la):
+    diff=abs(avg-val)
+    if(diff<tmp):
+        tmp=diff
+        resVal=val
+        resIdx=idx
+    elif(diff==tmp):
+        if(resVal<val):
+            resVal=val
+            resIdx=idx
+        elif(resVal==val):
+            if(idx<resIdx):
+                resVal=val
+                resIdx=idx
 
 
-for i in range(len(la)-1, -1,-1):
-    print(i)
-    tmp=abs(la[i] - avg)
-    print( "차이값", tmp )
-    if(minVal >= tmp):
-        minVal=tmp
-        res=la[i]
-        idx=i
-
-
-print(avg, idx)
-
+print(avg, resIdx+1)
 
