@@ -21,5 +21,5 @@ for idx, bVal in enumerate(lb):
 
 print([i for i, val in enumerate(lb) if val])
 
-lval=[i for i, val in enumerate(lb) if val]
+lval=list(i for i, val in enumerate(lb) if val)
 print(len(lval))
