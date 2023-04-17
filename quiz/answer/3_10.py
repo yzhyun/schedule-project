@@ -8,7 +8,6 @@ def fAnswer(ln):
 
     for i in range(9):
         xTmp = set(a[i])
-        print(xTmp)
         if len(xTmp) < 9:
             return False
 
@@ -19,6 +18,12 @@ def fAnswer(ln):
         if len(yTmp) < 9:
             return False
 
+
+    zTmp = set()
+    k=l=0
+    for i in range(2+k):
+        for j in range(2+l):
+            zTmp.add(ln[i][j])
 
 
 
