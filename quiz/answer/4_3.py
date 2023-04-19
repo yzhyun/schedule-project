@@ -23,4 +23,9 @@ while lt <= rt:
         if max > mid :
             cnt += 1
 
-        if cnt > 3 :
+        if cnt >= 3 :
+            lt = mid+1
+        else :
+            rt = mid-1
+
+print(mid)
