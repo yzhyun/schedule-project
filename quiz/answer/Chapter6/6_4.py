@@ -1,16 +1,22 @@
 import sys
 sys.stdin = open("../input.txt", "rt")
 
-def DFS(L, curr_sum):
+def DFS(L, curSum):
     if L == n:
-        if m > sum:
+        if totSum == totSum - curSum:
+            print("YES")
+            sys.exit(0)
     else:
-        DFS(L + 1, curr_sum + a[L])
-        DFS(L + 1, curr_sum)
+        DFS(L+1, curSum+a[L])
+        DFS(L+1, curSum)
 
-
-if __name__ == "__main__":
-    m, n = map(int, input().split())
+if __name__ == "__main__" :
+    n = int(input())
     a = list(map(int, input().split()))
-    maxSum=1
+
+    totSum = sum(a)
     DFS(0, 0)
+    print("NO")
+
+
+
