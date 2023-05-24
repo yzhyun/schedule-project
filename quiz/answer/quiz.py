@@ -1,25 +1,31 @@
+import sys
+sys.stdin=open("input.txt","rt")
+n,m = map(int,sys.stdin.readline().split())
+ln = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+lm = [list(map(int, sys.stdin.readline().split())) for _ in range(m)]
 
-def solution(players, callings):
-    answer = []
-    dict_players = {}
-    dict_rank = {}
-    for i , val in enumerate (players):
-        dict_players[i] = val
-        dict_rank[val] = i
-    for name in callings:
-        print(name)
-        print(dict_rank[name])
-        dict_rank[dict_players[dict_rank[name]-1]] += 1
-        dict_players[dict_rank[dict_players[dict_rank[name] - 1]]] = dict_players[dict_rank[name] - 1]
-        dict_rank[name] -= 1
+max_length=[]
 
-        dict_players[dict_rank[name]] = name
+print(ln)
+print(lm)
 
-    answer = list(dict_players.values())
+while ln or lm :
 
-    return answer
+    diff_length = lm[0][0]-ln[0][0]
 
-players = ["mumu", "soe", "poe","kai", "mine"]
-callings = ["kai", "kai", "mine", "mine"]
-
-print(solution(players, callings))
+    if diff_length > 0:
+        max_length.append(lm[0][1]-ln[0][1])
+        print(max_length)
+        ln.pop(0)
+        print(ln)
+        lm[0][0] = diff_length
+    elif diff_length < 0:
+        max_length.append(lm[0][1]-ln[0][1])
+        lm.pop(0)
+        ln[0][0] = -diff_length
+    else :
+        max_length.append(lm[0][1]-ln[0][1])
+        lm.pop(0)
+        ln.pop(0)
+print(max_length)
+print(max(max_length))

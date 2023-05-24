@@ -1,43 +1,35 @@
 import sys
 sys.stdin = open("input.txt", "rt")
 
-dDec={}
-dDec[0] = {1, 2, 3, 5, 6, 7}
-dDec[1] = {3, 6}
-dDec[2] = {1, 3, 4, 5, 7}
-dDec[3] = {1, 3, 4, 6, 7}
-dDec[4] = {2, 3, 4, 6}
-dDec[5] = {1, 2, 4, 6, 7}
-dDec[6] = {1, 2, 4, 5, 6, 7}
-dDec[7] = {1, 2, 3, 6}
-dDec[8] = {1, 2, 3, 4, 5, 6, 7}
-dDec[9] = {1, 2, 3, 4, 6, 7}
-
+dict_q = {"0": [1, 1, 1, 0, 1, 1, 1],
+          "1": [0, 0, 1, 0, 0, 1, 0],
+          "2": [1, 0, 1, 1, 1, 0, 1],
+          "3": [1, 0, 0, 1, 0, 1, 1],
+          "4": [1, 0, 1, 1, 0, 1, 0],
+          "5": [1, 1, 0, 1, 0, 1, 1],
+          "6": [1, 1, 0, 1, 1, 1, 1],
+          "7": [1, 1, 1, 0, 0, 1, 0],
+          "8": [1, 1, 1, 1, 1, 1, 1],
+          "9": [1, 1, 1, 1, 0, 1, 1],
+          " ": [0, 0, 0, 0, 0, 0, 0]}
 
 n = int(input())
-
 for i in range(n):
+    x, y = map(str, input().split())
+    # x = " " * (5 - len(x)) + x
+    # y = " " * (5 - len(y)) + y
 
-    sBef, sAft = map(str, input().split())
-    nBef = int(sBef)
-    nAft = int(sAft)
+    x = x.rjust(5, " ")
+    y = y.rjust(5, " ")
 
-    lBef = [ i for i in dDec[nBef]]
-    lAft = [ i for i in dDec[nAft]]
-
-    dBef = {}
-    for i in range(len(lBef)):
-        dBef[i] = i
-
+    print(x, y)
     cnt = 0
-    while lAft :
-        if lAft.pop() not in lBef:
-            cnt += 1
+    for j in range(5):
+        if x[j] == y[j]:
+            continue
         else:
-            lBef.pop()
-    print(cnt + len(lBef))
-
-
-
-
-
+            for k in range(7):
+                if dict_q[x[j]][k] != dict_q[y[j]][k] :
+                    cnt += 1
+    print(cnt)
+print(dict_q["9"][0])

@@ -1,33 +1,24 @@
 import sys
-
 sys.stdin = open("../input.txt", "rt")
 
+c , n = map(int, input().split())
+ln = [ int(input()) for _ in range(n)]
+tot = sum(ln)
+res = 0
 def DFS(L, curSum, tSum):
-    global totSum
-    if curSum + (sum(ln)-tSum)<totSum:
+    global res
+    if tot-tSum+res < res:
         return
-    if curSum > w:
+    if curSum > c:
         return
     if L == n:
-        if curSum > totSum:
-            totSum = curSum
+        if curSum <= c:
+            if curSum > res :
+                res = curSum
+
     else:
-        DFS(L+1, curSum+ln[L], tSum+ln[L])
-        DFS(L+1, curSum, tSum+ln[L])
+        DFS(L+1, curSum + ln[L], curSum+ln[L])
+        DFS(L+1, curSum, curSum+ln[L])
 
-
-if __name__ == "__main__":
-    w, n = map(int, input().split())
-    ln = [int(input()) for i in range(n)]
-    curSum = 0
-    totSum = 0
-
-    print(w, n)
-    print(ln)
-
-    DFS(0, 0, 0)
-    print(totSum)
-
-    la = [[1,10],[1,1]]
-    la.sort(key=lambda x:x[1])
-    print(la)
+DFS(0,0,0)
+print(res)
