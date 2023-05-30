@@ -2,18 +2,18 @@ import sys
 sys.stdin = open("../input.txt", "rt")
 
 n = int(input())
-res = [0]*(n+1)
+ln = [i for i in range(n+1)]
+res = []
+
+
 def DFS(L):
-    print(res)
     if L == n+1:
-        for i in range(1, n+1):
-            if res[i]:
-                print(i, end = ' ')
+        for i in range(len(res)):
+            print(res[i], end= ' ')
         print()
     else:
-        res[L] = 1
+        res.append(ln[L])
         DFS(L+1)
-        res[L] = 0
+        res.pop()
         DFS(L+1)
-
 DFS(1)
