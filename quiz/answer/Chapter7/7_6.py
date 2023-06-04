@@ -1,20 +1,28 @@
 import sys
 sys.stdin = open("../input.txt", "rt")
 
-sN = str(input())
-ch=[]
-sVal = ""
+code = list(map(int, input()))
+n = len(code)
+code.insert(n, -1)
+res = [0]*100
+cnt = 0
 
-def DFS(L, n):
-    global sVal
-    if L == len(sN):
-        sVal = ""
-        for i, val in enumerate(ch):
-            sVal += val
-        print(sVal)
+
+def DFS(L, P):
+    global cnt
+    if L == n:
+        cnt+=1
+        for j in range(P):
+            print(chr(res[j]+64), end = '')
+        print()
     else:
-        ch.append(sN[L])
-        DFS(L+1, sN[L])
-        ch.pop()
-        DFS(L+1, sN[L])
+        for i in range(1, 27):
+            if code[L] == i:
+                res[P] = i
+                DFS(L+1, P+1)
+            elif i>=10 and code[L] == i//10 and code[L+1] == i%10:
+                res[P] = i
+                DFS(L+2, P+1)
+
 DFS(0, 0)
+print(cnt)
