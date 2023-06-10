@@ -1,28 +1,29 @@
 import sys
 sys.stdin = open("../input.txt", "rt")
 
-code = list(map(int, input()))
-n = len(code)
-code.insert(n, -1)
-res = [0]*100
-cnt = 0
 
+lc = list(map(int, input()))
+lc.append(-1)
+print(lc)
+res = [0]*len(lc)
 
-def DFS(L, P):
-    global cnt
-    if L == n:
-        cnt+=1
-        for j in range(P):
-            print(chr(res[j]+64), end = '')
+def DFS(L, p):
+    if L == len(lc)-1:
+        for i in range(p):
+            print(res[i] , end = ' ')
         print()
     else:
         for i in range(1, 27):
-            if code[L] == i:
-                res[P] = i
-                DFS(L+1, P+1)
-            elif i>=10 and code[L] == i//10 and code[L+1] == i%10:
-                res[P] = i
-                DFS(L+2, P+1)
+            if i == lc[L]:
+                res[p] = i
+                DFS(L+1, p+1)
+            elif i >= 10 and i//10 == lc[L] and i%10 == lc[L+1]:
+                res[p] = i
+                DFS(L+2, p+1)
 
 DFS(0, 0)
-print(cnt)
+
+
+
+
+

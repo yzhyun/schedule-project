@@ -1,28 +1,28 @@
 import sys
-
 sys.stdin = open("../input.txt", "rt")
 
-p = int(input())
-n = int(input())
+T = int(input())
+k = int(input())
 
+lw = list()
 lc = list()
-ln = list()
+
 cnt = 0
-for i in range(n):
+for i in range(k):
     a, b = map(int, input().split())
-    lc.append(a)
-    ln.append(b)
+    lw.append(a)
+    lc.append(b)
 
 def DFS(L, csum):
     global cnt
-    if csum > p:
+    if csum > T:
         return
-    if L == n:
-        if csum == p:
+    if L == k:
+        if csum == T:
             cnt += 1
     else:
-        for i in range(ln[L]+1):
-            DFS(L+1, csum + lc[L]*i)
+        for i in range(lc[L]+1):
+            DFS(L+1, csum + lw[L]*i)
 
-DFS(0, 0)
+DFS(0,0)
 print(cnt)
