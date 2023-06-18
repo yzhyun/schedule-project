@@ -3,13 +3,13 @@
 import sys
 sys.stdin=open("../input.txt", "rt")
 
-lrslt=[i for i in range(0,21)]
-#lq=list(map(int, input().split()))
-#print(lq)
+n = 10
+cards = [ i for i in range(21)]
 
-print(lrslt)
-a,b=2,8
-ltemp=lrslt[a:b+1]
-print(ltemp)
-ltemp=lrslt[a:b+1].reverse()
-print(ltemp)
+for _ in range(n):
+    s, e = map(int, input().split())
+    for i in range((e-s+1) // 2):
+        cards[s+i], cards[e-i] = cards[e-i], cards[s+i]
+
+cards.pop(0)
+print(cards)

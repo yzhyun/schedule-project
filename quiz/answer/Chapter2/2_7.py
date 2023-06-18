@@ -1,25 +1,15 @@
 import sys
 sys.stdin=open("../input.txt", "rt")
-n=int(input())
-print(n)
-lrslt=list(map(int, range(1,n+1)))
-lb=[True]*(n+1)
-nRslt=0
 
-
-
-print("======================")
-
-
-for idx, bVal in enumerate(lb):
-    if(idx<2):
-        lb[idx]=False
-        continue
-    if(bVal):
-        for j in range(idx, (n//idx)+1):
-            lb[idx*j]=False
-
-print([i for i, val in enumerate(lb) if val])
-
-lval=list(i for i, val in enumerate(lb) if val)
-print(len(lval))
+n = int(input())
+ch = [0]*(n+1)
+cnt = 0
+for i in range(2, n+1):
+    if ch[i] == 0:
+        print(i, end= ' ')
+        cnt += 1
+        for j in range(i, n+1, i):
+            ch[j] = 1
+print()
+print(ch)
+print(cnt)

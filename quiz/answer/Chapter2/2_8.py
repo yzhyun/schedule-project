@@ -1,25 +1,27 @@
 import sys
 sys.stdin=open("../input.txt", "rt")
 
-n=int(input())
-ln=list(map(int,input().split()))
-print(n)
-print(ln)
+n = int(input())
+ln = list(map(int, input().split()))
 
+print(ln)
 def reverse(x):
-    sRevs=str(x)[::-1]
-    nRtn=int(sRevs)
-    return nRtn
+    res = 0
+    while x > 0:
+        tmp = x % 10
+        x = x // 10
+        res = res * 10 + tmp
+    return res
 
 def isPrime(x):
-    bRtn=True
-    if(x==1):   return False
-    for i in range (2,x):
-        if(x%i == 0):
+    if x == 1:
+        return False
+    for i in range(2, x):
+        if x % i == 0:
             return False
-    return bRtn
+    return True
 
 for idx, val in enumerate(ln):
-    nRtn=reverse(val)
-    if(isPrime(nRtn)):
-        print(nRtn, end=' ')
+    retVal = reverse(val)
+    if isPrime(retVal):
+        print(retVal, end = ' ')

@@ -1,34 +1,23 @@
-import sys,os
-
-print(os.getcwd())
+import sys
 sys.stdin = open("../input.txt", "rt")
 
-n=int(input())
-la=list(map(int, input().split()))
-avg=round(sum(la)/n)
-print(n)
-print(la)
-print(avg)
+N = int(input())
+lScore = list(map(int, input().split()))
+avg = sum(lScore) / N
+avg = int(avg + 0.5)
+minVal = 2147000000
 
-diff=0
-tmp=1000
-resVal=-1000
-resIdx=-1
-for idx, val in enumerate(la):
-    diff=abs(avg-val)
-    if(diff<tmp):
-        tmp=diff
-        resVal=val
-        resIdx=idx
-    elif(diff==tmp):
-        if(resVal<val):
-            resVal=val
-            resIdx=idx
-        elif(resVal==val):
-            if(idx<resIdx):
-                resVal=val
-                resIdx=idx
+for idx, val in enumerate(lScore):
+    tmp = abs(val - avg)
+    if tmp < minVal:
+        minVal = tmp
+        score = val
+        res = idx+1
+    elif tmp == minVal:
+        if val > score:
+            score = val
+            res = idx+1
+print(avg, res)
 
 
-print(avg, resIdx+1)
 

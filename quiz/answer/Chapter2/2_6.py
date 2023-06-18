@@ -1,31 +1,29 @@
 import sys
 sys.stdin=open("../input.txt", "rt")
 
-n=int(input())
-lq=list(map(str, input().split()))
-lrslt=[0]*n
+n = int(input())
+ln = list(map(str, input().split()))
+maxVal = -214700000
+pindex = -1
+print(ln)
 
-print(n)
-print(lq)
-rslt=0
+def digit_sum(x):
+    cnt = 0
+    for i in range(len(x)):
+        cnt += int(x[i])
+    return cnt
 
-def sumString(trgtStr):
-    tmpRslt=0
-    for j in range(len(trgtStr)):
-        tmpRslt+=int(trgtStr[j])
-    return tmpRslt
 
-for i in range(len(lq)):
-    sTmp=lq[i]
-    rslt = sumString(sTmp)
-    lrslt[i] = rslt
-    rslt=0
+for idx, val in enumerate(ln):
 
-maxVal=max(lrslt)
+    retVal = digit_sum(val)
+    if retVal > maxVal:
+        maxVal = retVal
+        pindex = idx
 
-for i in range(len(lrslt)):
-    if(maxVal==lrslt[i]):
-        print("result:", lq[i])
-        break
+print(ln[pindex])
+
+
+
 
 

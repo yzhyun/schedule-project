@@ -1,44 +1,42 @@
 import sys
-
-sys.stdin = open("input.txt", "rt")
+sys.stdin = open("../input.txt", "rt")
 
 n = int(input())
+g = [list(map(int, input())) +[0] for _ in range(n)]
+#g.insert(0, [0] * (n+2))
+#g.append([0] * (n+2))
 
-# graph = [list(input().split()) for _ in range(n)]
-graph = [list(map(int, input())) for _ in range(n)]
-
-for i in range(n):
-    print(graph[i])
-
-print("-----")
+for x in g:
+    print(x)
 
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
 
-
-def dfs(x, y):
-    if x < 0 or x >= n or y < 0 or y >= n:
-        return 0
-    if graph[x][y]:
-        graph[x][y] = 0
-
-        count = 1
-
+res = []
+def DFS(x, y):
+    global cnt
+    if x < 0 or y < 0 or x > n-1 or y > n-1:
+        return
+    if g[x][y] == 1:
+        cnt += 1
+        g[x][y] = 0
         for i in range(4):
-            count += dfs(x + dx[i], y + dy[i])
-        return count
-    return 0
+            xx = x + dx[i]
+            yy = y + dy[i]
 
+            if 0 <= xx < n and 0 <= yy < n and g[xx][yy] == 1:
+                DFS(xx, yy)
 
-answer = []
 for i in range(n):
     for j in range(n):
-        res = dfs(i, j)
+        cnt = 0
+        DFS(i, j)
+        if cnt != 0:
+            res.append(cnt)
+res.sort()
+print(len(res))
+for n in res:
+    print(n)
 
-        if res:
-            answer.append(res)
 
-print(len(answer))
-answer.sort()
-for a in answer:
-    print(a)
+

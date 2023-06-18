@@ -1,17 +1,22 @@
 import sys
 sys.stdin=open("../input.txt", "rt")
 
-n=int(input())
+n = int(input())
 
-bRslt=False
-for i in range(n):
-    str = input().upper()
-    nCenter=len(str)//2
-    #stttttts
-    # print(nCenter)
-    # print(str[0:nCenter], str[::-1][0:nCenter])
-    if(str[0:nCenter] == str[::-1][0:nCenter]):
-            print("#%d" % (i + 1), "YES")
-    else:   print("#%d" %(i+1) , "NO"  )
-    # if(bRslt):    print("#%d" %(i+1) , "YES" )
-    # else :        print("#%d" %(i+1) , "NO"  )
+
+
+for i in range(1, n+1):
+    word = input()
+    word = word.upper()
+    c = len(word) // 2
+    cnt = 0
+    for j in range(c):
+        if word[j] != word[-1-j]:
+            print(f"#{i} NO")
+            break
+    else:
+        print(f"#{i} YES")
+
+        # print(word[j], word[len(word)-(j+1)])
+        # print(j, len(word) - (j+1))
+
