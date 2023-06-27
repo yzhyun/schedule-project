@@ -1,35 +1,28 @@
 import sys
-sys.stdin = open("../input.txt", "rt")
-
-n, m = map(int, input().split())
-print(n,m)
-
-ln = []
-for _ in range(n):
-    ln.append(int(input()))
-ln.sort()
-print(ln)
-
-lt = ln[0]
-rt = ln[len(ln)-1]
-cnt = 0
-def Count(mid):
-    cnt = 1
-    ep = ln[0]
-    for i in range(1,n):
-        if ln[i]- ep >= mid :
+sys.stdin=open("../input.txt", "r")
+def Count(capacity):
+    cnt=1
+    sum=0
+    for x in Music:
+        if sum+x>capacity:
             cnt+=1
-            ep =ln[i]
-
+            sum=x
+        else:
+            sum+=x
     return cnt
 
-while lt <= rt :
-    mid = (lt+rt)//2
-
-    if Count(mid) >= m :
-        lt = mid + 1
-        res = mid
-    else :
-        rt = mid - 1
-
+n, m=map(int, input().split())
+Music=list(map(int, input().split()))
+maxx=max(Music)
+lt=1
+rt=sum(Music)
+res=0
+while lt<=rt:
+    mid=(lt+rt)//2
+    if mid>=maxx and Count(mid)<=m:
+        res=mid
+        rt=mid-1
+    else:
+        lt=mid+1
 print(res)
+

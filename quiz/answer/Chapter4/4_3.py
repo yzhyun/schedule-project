@@ -1,36 +1,38 @@
 import sys
-
 sys.stdin = open("../input.txt", "rt")
 
 n, m = map(int, input().split())
-print(n, m)
-
 ln = list(map(int, input().split()))
-#17
 
-print(ln)
-print(sum(ln))
-lt=ln[0]
-rt=sum(ln)
-res=0
+maxTime = sum(ln)
+print(maxTime)
 
-while lt<=rt:
+lt = 0
+rt = maxTime
+minVal = 2147000000
+while lt <= rt:
     mid = (lt+rt) // 2
+    totVal = 0
     cnt = 1
-    sum = 0
-    for x in ln :
-        if sum+x > mid :
+    for val in ln:
+        if totVal+val > mid:
+            totVal = val
             cnt += 1
-            sum = x
-        else :
-            sum += x
-    if cnt <= m:
+        else:
+            totVal += val
+
+    if cnt <= m :
+        minVal = mid
         rt = mid - 1
-        res = mid
-    else :
-        lt = mid + 1
+    elif cnt > m :
+        lt = mid+1
 
 
-print(res)
+print(minVal)
+
+
+
+
+
 
 
