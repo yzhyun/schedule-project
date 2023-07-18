@@ -3,7 +3,6 @@ sys.stdin = open("input.txt", "rt")
 
 n = int(input())
 a = list(input())
-print(a)
 
 for i in range(n-1):
     b = input()
