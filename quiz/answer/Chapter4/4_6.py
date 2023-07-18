@@ -1,23 +1,16 @@
 import sys
 sys.stdin=open("../input.txt", "rt")
 
-n  = int(input())
+n = int(input())
 ln = [list(map(int, input().split())) for _ in range(n)]
 
-print(n)
+ln.sort(reverse=True, key = lambda x:(x[0], x[1]))
 print(ln)
 
-ln.sort(reverse=True, key=lambda x: (x[0], x[1]))
-
-for x,y in ln:
-    print(x, y)
-
-nMax = ln[0][1]
-cnt = 1
-
-for x, y in ln:
-    if y > nMax :
-        cnt+=1
-        nMax=y
-
+mw = 0
+cnt = 0
+for t, w in ln:
+    if w > mw:
+        mw = w
+        cnt += 1
 print(cnt)

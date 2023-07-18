@@ -5,26 +5,24 @@ s=input()
 print(s)
 stack=[]
 
-nRslt=0
 for x in s:
     if x.isdecimal():
-        stack.append(x)
-    else :
-        if x=='+':
-            j = int(stack.pop())
-            k = int(stack.pop())
-            stack.append(j+k)
-        elif x=='-':
-            j = int(stack.pop())
-            k = int(stack.pop())
-            stack.append(k-j)
-        elif x=='*':
-            j = int(stack.pop())
-            k = int(stack.pop())
-            stack.append(j*k)
-        elif x=='/':
-            j = int(stack.pop())
-            k = int(stack.pop())
-            stack.append(j//k)
+        stack.append(int(x))
+    if x == '+':
+        n1 = stack.pop()
+        n2 = stack.pop()
+        stack.append(n2 + n1)
+    elif x == '-':
+        n1 = stack.pop()
+        n2 = stack.pop()
+        stack.append(n2 - n1)
+    elif x == '*':
+        n1 = stack.pop()
+        n2 = stack.pop()
+        stack.append(n2 * n1)
+    elif x == '/':
+        n1 = stack.pop()
+        n2 = stack.pop()
+        stack.append(n2 / n1)
 
-print(stack.pop())
+print(stack[0])

@@ -2,23 +2,35 @@ import sys
 from collections import deque
 sys.stdin=open("../input.txt", "rt")
 
-sMandatory = input()
+s = input()
 n = int(input())
 
-print(sMandatory, n)
+# for i in range(n):
+#     schedule = input()
+#     dq = deque(schedule)
+#     cnt = 0
+#     while dq:
+#         if s[cnt] == dq.popleft():
+#             cnt += 1
+#         if cnt == len(s):
+#             print(f" #{i+1} YES")
+#             break
+#     if cnt != len(s) and not dq:
+#         print(f" #{i + 1} NO")
+
 for i in range(n):
     plan = input()
-    dQ = deque(sMandatory)
-
-    for s in plan:
-        if s in dQ :
-            if s != dQ.popleft() :
-                print("#%d NO" %(i+1))
+    dq = deque(s)
+    for x in plan:
+        if x in dq:
+            if x != dq.popleft():
+                print(f"#{i+1} NO")
                 break
-    else :
-        if len(dQ) == 0:
-            print("#%d YES" %(i+1))
-        else :
-            print("#%d NO" % (i + 1))
+    else:
+        if not dq:
+            print(f"#{i+1} YES")
+        else:
+            print(f"#{i+1} NO")
+
 
 

@@ -1,31 +1,30 @@
 import sys
-sys.stdin=open("input.txt","rt")
-n,m = map(int,sys.stdin.readline().split())
-ln = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
-lm = [list(map(int, sys.stdin.readline().split())) for _ in range(m)]
+sys.stdin = open("input.txt", "rt")
+input = sys.stdin.readline
 
-max_length=[]
+N, C = list(map(int, input().split()))  # 집 개수 N, 공유기 C개
 
-print(ln)
-print(lm)
+arr = [int(input().rstrip()) for _ in range(N)]  # 공유기 거리
+arr.sort()  # 이분탐색을 위한 정렬
+# [1, 2, 4, 8, 9]
+# 두 공유기 사이의 최대 거리를 이분탐색으로
+start = 1  # 최소 거리
+end = arr[-1] - arr[0]  # 가장 큰 값 - 가장 작은 값 차이; 최대 거리
+print(end)
+result = 0
 
-while ln or lm :
+while (start <= end):
+    mid = (start + end) // 2  # 가장 클수 있는 거리의 중간값 4
+    cur = arr[0]  # 첫번째 값부터 시작
+    cnt = 1
+    for i in range(1, len(arr)):  # 두번째 공유기부터 마지막까지
+        if arr[i] >= cur + mid:  # 두번째 값이 시작값+거리 보다 크면
+            cur = arr[i]  # 공유기를 설치
+            cnt += 1
+    if cnt >= C:  # 갯수가 공유기 개수보다 많으면
+        start = mid + 1  # 차이를 키워주기
+        result = mid
+    else:  # 더 적게 설치되면
+        end = mid - 1  # 차이를 줄여주기
 
-    diff_length = lm[0][0]-ln[0][0]
-
-    if diff_length > 0:
-        max_length.append(lm[0][1]-ln[0][1])
-        print(max_length)
-        ln.pop(0)
-        print(ln)
-        lm[0][0] = diff_length
-    elif diff_length < 0:
-        max_length.append(lm[0][1]-ln[0][1])
-        lm.pop(0)
-        ln[0][0] = -diff_length
-    else :
-        max_length.append(lm[0][1]-ln[0][1])
-        lm.pop(0)
-        ln.pop(0)
-print(max_length)
-print(max(max_length))
+print(result)

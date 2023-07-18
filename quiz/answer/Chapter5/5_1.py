@@ -1,20 +1,22 @@
 import sys
 sys.stdin = open("../input.txt", "rt")
 
-n, m = map(int, input().split())
-print (n, m)
+num, n = map(int, input().split())
+num = list(map(int, str(num)))
+print(num)
 
-ln = list(map(int, str(n)))
-print(ln)
-stack=[]
-
-for x in ln:
-    while stack and m>0 and stack[-1]<x:
+stack = []
+for x in num:
+    while stack and n > 0 and stack[-1] < x:
         stack.pop()
-        m-=1
+        n -= 1
     stack.append(x)
 
-stack=stack[:-m]
-res=''.join(map(str, stack))
-print(m, res)
+if n != 0:
+    stack = stack[:-n]
+
+res = ''.join(map(str, stack))
+print(res)
+
+
 

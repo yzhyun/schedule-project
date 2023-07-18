@@ -1,22 +1,18 @@
 import sys
 sys.stdin = open("../input.txt", "rt")
 
-# AbaAeCe
-# baeeACA
-sWord = input()
-dWord = dict()
-for s in sWord:
-    dWord[s] = dWord.get(s,0) + 1
+a = input()
+b = input()
 
-sWord = input()
-for s in sWord:
-    dWord[s] = dWord.get(s,0) - 1
+p = dict()
 
-print(dWord)
-for key, val in dWord.items():
-    if val > 0 :
-        print("NO")
-        break
-else:
+for i in a:
+    p[i] = p.get(i, 0) + 1
+
+for i in b:
+    p[i] = p.get(i, 0) - 1
+
+if all( p[i] == 0 for i in p.keys()):
     print("YES")
-
+else:
+    print("NO")

@@ -1,39 +1,31 @@
 import sys
+from collections import deque
 sys.stdin = open("../input.txt", "rt")
 
 n = int(input())
 ln = list(map(int, input().split()))
+dq = deque(ln)
 
-print(n)
-print(ln)
-
-lt=0
-rt=n-1
-p=0
-ltmp=[]
-sRes=""
-
-print(lt, rt)
-#print(ln[rt])
-while lt <= rt :
-    if ln[lt] > p :
-        ltmp.append([ln[lt], 'L'])
-
-    if ln[rt] > p :
-        ltmp.append([ln[rt], 'R'])
-
-    ltmp.sort()
-
-    if len(ltmp) == 0 :
+sRslt = ""
+val = 0
+lVal = 0
+while dq:
+    a = dq[0]
+    b = dq[-1]
+    if lVal > dq[0] and lVal > dq[-1]:
         break
-    else :
-        sRes += ltmp[0][1]
-        p = ltmp[0][0]
-
-        if ltmp[0][1] == 'L' :
-            lt+=1
-        else :
-            rt-=1
-    ltmp.clear()
-
-print(sRes)
+    if dq[0] < dq[-1]:
+        if dq[0] > lVal:
+            lVal = dq.popleft()
+            sRslt += "L"
+        else:
+            lVal = dq.pop()
+            sRslt += "R"
+    else:
+        if dq[-1] > lVal:
+            lVal = dq.pop()
+            sRslt += "R"
+        else:
+            lVal = dq.popleft()
+            sRslt += "L"
+print(sRslt)

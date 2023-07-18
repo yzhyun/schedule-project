@@ -4,22 +4,16 @@ sys.stdin=open("../input.txt", "rt")
 n=int(input())
 ln=list(map(int, input().split()))
 
-print(n)
 print(ln)
-
-lrslt=[n for _ in range(n)]
-print(lrslt)
+res = [0] * n
 
 for i in range(n):
-
-    cnt=0
-    p = i+1
+    cnt = ln[i]
     for j in range(n):
-        if p < lrslt[j]:
-            cnt += 1
-
-        if cnt > ln[i]:
-            lrslt[j] = p
+        if res[j] == 0 and cnt == 0:
+            res[j] = i+1
             break
+        elif res[j] == 0:
+            cnt -= 1
+print(res)
 
-print(lrslt)
