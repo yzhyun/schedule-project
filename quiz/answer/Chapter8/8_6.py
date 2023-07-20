@@ -1,49 +1,27 @@
-# import sys
-# sys.stdin = open("../input.txt", "rt")
-#
-# n = int(input())
-# bricks = []
-# dp = [0] * n
-# for i in range(n):
-#     a, b, c = map(int, input().split())
-#     bricks.append((a, b, c))
-# print(bricks)
-# bricks.sort(key = lambda x: (-x[0], -x[1], -x[2]))
-#
-# dp[0] = bricks[0][1]
-#
-# for i in range(1, n):
-#     maxVal = 0
-#     for j in range(i-1, -1, -1):
-#         if bricks[j][2] > bricks[i][2] and dp[j] > maxVal:
-#             maxVal = dp[j]
-#     dp[i] = maxVal + bricks[i][1]
-#
-# print(dp)
-
 import sys
 sys.stdin = open("../input.txt", "rt")
 
 n = int(input())
-bricks = []
+bricks = [list(map(int, input().split())) for _ in range(n)]
 
-for i in range(n):
-    a, b, c = map(int, input().split())
-    bricks.append((a, b, c))
+#널이 기준으로 내림차순 sorting
+bricks.sort(reverse=True)
 
-bricks.sort(key=lambda x: (-x[0], -x[1]))  # 넓이 기준 내림차순 정렬
-#bricks.sort(reverse = True)
-dp = [0] * n
-dp[0] = bricks[0][1]
+dy = [0] *(n)
+dy[0] = bricks[0][1]
 
+'''
+1. 돌의 갯수 만큼 탐색
+2. 타겟 돌의 앞부터 순차적 탐색
+    무게가 작은 경우, [i][2]
+    높이 값을 기록한다. (기존 값보다 높이가 큰 경우 찾기)    
+'''
 for i in range(1, n):
-    maxVal = 0
+    max_h = 0
     for j in range(i-1, -1, -1):
-        if bricks[i][2] < bricks[j][2] and maxVal < dp[j]:
-        #if bricks[j][2] > bricks[i][2] and dp[j] > maxVal:
-            maxVal = dp[j]
-    dp[i] = maxVal + bricks[i][1]
+        if bricks[i][2] < bricks[j][2] and dy[j] > max_h:
+            max_h = dy[j]
+        dy[i] = max_h + bricks[i][1]
 
-print(dp)
-print(max(dp))
+print(max(dy))
 

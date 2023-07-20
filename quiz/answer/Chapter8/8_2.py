@@ -2,16 +2,16 @@ import sys
 sys.stdin = open("../input.txt")
 
 n = int(input())
-ln = [0] + list(map(int, input().split()))
+ln = [i for i in range(n+1)]
+dy = [0] * (n+1)
 
-dp = [0] * (n+1)
-dp[1] = 1
+def DFS(len):
+    if dy[len] > 0:
+        return dy[len]
+    if len == 1 or len == 2:
+        return len
+    else:
+        dy[len] = DFS(len-1) + DFS(len-2)
+        return dy[len]
 
-for i in range(2, n+1):
-    mmax = 0
-    for j in range(i-1, 0, -1):
-        if ln[j] < ln[i] and dp[j] > mmax:
-            mmax = dp[j]
-    dp[i] = mmax + 1
-print(max(dp))
-
+print(DFS(n))
