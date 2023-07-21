@@ -1,17 +1,14 @@
 import sys
-
 sys.stdin = open("../input.txt", "rt")
 
-n, m  = map(int, input().split())
+n = int(input())
+c = list(map(int, input().split()))
+m = int(input())
 
-dp = [0] * (m + 1)
-dp[0] = 0
+dy = [1000] * (m+1)
+dy[0] = 0
 
 for i in range(n):
-    s, t = map(int, input().split())
-    for j in range(m, t-1, -1):
-        dp[j] = max(dp[j - t] + s, dp[j])
-
-print(dp[m])
-
-
+    for j in range(c[i], m+1):
+        dy[j] = min(dy[j-c[i]]+1, dy[j])
+print(dy)
