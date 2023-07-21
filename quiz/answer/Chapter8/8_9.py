@@ -1,17 +1,13 @@
 import sys
 sys.stdin = open("../input.txt", "rt")
 
-n = int(input())
-coin = list(map(int, input().split()))
-m = int(input())
-dp = [1000] * (m + 1)
-dp[0] = 0
+n, m = map(int, input().split())
+dy = [0] * (m+1)
+
 
 for i in range(n):
-    for j in range(coin[i], m+1):
-        dp[j] = min(dp[j-coin[i]]+1, dp[j])
+    w, v = map(int, input().split())
+    for j in range(w, m+1):
+        dy[j] = max(dy[j-w] + v, dy[j])
 
-print(dp)
-print(dp[m])
-
-
+print(dy)
