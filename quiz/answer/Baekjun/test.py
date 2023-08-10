@@ -1,18 +1,9 @@
 import sys
+sys.stdin = open("input.txt", "rt")
 
+a = list(map(int, input()))
+print(a)
 
-a, b =map(int, input().split())
-
-
-result = 0
-def DFS(x, y):
-    if x % y == 0:
-        return y
-    else:
-        return DFS(y, x % y)
-
-
-
-print(DFS(a, b))
-
-
+b = 101111
+c = list(map(int, b))
+print(c)
